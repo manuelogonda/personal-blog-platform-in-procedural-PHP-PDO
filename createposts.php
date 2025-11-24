@@ -34,6 +34,7 @@ $pdo = null;
     <title>Create a post in a Blog</title>
 </head>
 <body>
+    <a href="displayposts.php"><button type="button">See Posts</button></a>
     <form action="<?= htmlspecialchars($_SERVER['PHP_SELF']) ?>" method="POST">
         <label for="userid">User ID</label>
         <input type="number" name="userid" >
