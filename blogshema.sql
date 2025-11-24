@@ -48,6 +48,9 @@ CREATE TABLE post_tags (
     FOREIGN KEY (tag_id) REFERENCES tags(id)
 );
 
+--A join to display the whole post details
+
+
 /*
 Explanation of Tables
 users: Blog authors and commenters.
