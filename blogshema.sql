@@ -49,6 +49,22 @@ CREATE TABLE post_tags (
 );
 
 --A join to display the whole post details
+ SELECT 
+    p.id AS post_id,
+    p.title AS post_title,
+    p.content AS post_content,
+    p.created_at AS time_posted
+    u.username,
+    u.email AS user_email,
+    c.name AS category_name,
+    Co.content AS comments
+FROM posts p
+INNER JOIN categories c
+ON c.id = p.category_id
+INNER JOIN users u 
+ON u.id = p.user_id
+INNER JOIN comments Co 
+ON Co.post_id = p.id;
 
 
 /*
