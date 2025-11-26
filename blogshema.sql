@@ -21,8 +21,8 @@ CREATE TABLE posts (
     title VARCHAR(255) NOT NULL,
     content TEXT NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (user_id) REFERENCES users(id),
-    FOREIGN KEY (category_id) REFERENCES categories(id)
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+    FOREIGN KEY (category_id) REFERENCES categories(id) ON DELETE CASCADE
 );
 
 CREATE TABLE comments (
@@ -31,8 +31,8 @@ CREATE TABLE comments (
     user_id INT,
     content TEXT NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (post_id) REFERENCES posts(id),
-    FOREIGN KEY (user_id) REFERENCES users(id)
+    FOREIGN KEY (post_id) REFERENCES posts(id) ON DELETE CASCADE,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
 
 CREATE TABLE tags (
@@ -44,8 +44,8 @@ CREATE TABLE post_tags (
     post_id INT,
     tag_id INT,
     PRIMARY KEY(post_id, tag_id),
-    FOREIGN KEY (post_id) REFERENCES posts(id),
-    FOREIGN KEY (tag_id) REFERENCES tags(id)
+    FOREIGN KEY (post_id) REFERENCES posts(id) ON DELETE CASCADE,
+    FOREIGN KEY (tag_id) REFERENCES tags(id) ON DELETE CASCADE
 );
 
 --A join to display the whole post details
@@ -78,4 +78,41 @@ categories: Group your posts (e.g., "Tech", "Travel").
 comments: Readers can post comments; related to posts and users.
 
 tags & post_tags: Add keyword tags to posts (many-to-many relationship).
+
+
+------------------------------------
+ON DELETE CASCADE automatically deletes all child rows 
+referencing the parent row when the parent is deleted. 
+This is useful for tightly connected data where removing a parent should also remove all dependents, 
+ensuring no orphaned child rows remain.
+---------------------------
+
+ON DELETE RESTRICT prevents deletion of the parent row if any related child rows exist. 
+This means you cannot delete the parent until you manually delete or update the child rows. 
+It acts as a strong data integrity safeguard to avoid accidental loss of related data.
+
+--------------------
+ON DELETE SET NULL 
+When a foreign key id=s deleted then replace its value with null
 */
+
+---Altering posts table to set ON DELETE CASCADE to a foreign key
+ALTER TABLE posts ADD Constraint user_id FOREIGN KEY (user_id) 
+REFERENCES users(id) ON DELETE CASCADE;
+
+ALTER TABLE posts ADD Constraint category_id FOREIGN KEY (category_id) 
+REFERENCES categories(id) ON DELETE CASCADE;
+
+---Altering coments table to set ON DELETE CASCADE to a foreign key
+ALTER TABLE comments ADD Constraint post_id FOREIGN KEY (post_id) 
+REFERENCES posts(id) ON DELETE CASCADE;
+
+ALTER TABLE comments ADD Constraint user_id FOREIGN KEY (user_id) 
+REFERENCES users(id) ON DELETE CASCADE;
+
+--Altering posts_tags table to set ON DELETE CASCADE to a foreign key
+ALTER TABLE comments ADD Constraint user_id FOREIGN KEY (user_id) 
+REFERENCES users(id) ON DELETE CASCADE;
+
+ALTER TABLE comments ADD Constraint user_id FOREIGN KEY (user_id) 
+REFERENCES users(id) ON DELETE CASCADE;
