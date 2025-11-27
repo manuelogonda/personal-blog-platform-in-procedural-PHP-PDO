@@ -130,3 +130,11 @@ FROM users;
 --CURRENT_TIMESTAMP() function returns the current date and time.
 
 
+--STRING FUNCTIONS
+--1)CONCAT()
+--Returns concatenated string
+--2)LENGTH() Returns the length of the given string.
+--3)REPLACE() Returns a new string by replacing all the occurrences of the particular part of a string (substring) with a specified string.
+--4)RIGHT()Returns the rightmost characters from the actual(current) string.
+--5)UPPER()returns a string that has all the characters in upper case.
+
