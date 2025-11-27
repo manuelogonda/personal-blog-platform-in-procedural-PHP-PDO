@@ -116,3 +116,17 @@ REFERENCES users(id) ON DELETE CASCADE;
 
 ALTER TABLE comments ADD Constraint user_id FOREIGN KEY (user_id) 
 REFERENCES users(id) ON DELETE CASCADE;
+
+--DATE functions MySQL: YEAR(), MONTH(), DAY(), HOUR(), MINUTE(), SECOND()->Gets specifird item from
+--the timestamp paa in the column name
+--1)DATEPART[sql server] function is used to extract specific date and time components, 
+--such as the year, month, day, hour, minute, or second, from a datetime or timestamp value
+SELECT DAY(created_at) AS day_created
+FROM users;
+
+SELECT YEAR(created_at) AS day_created
+FROM users;
+
+--CURRENT_TIMESTAMP() function returns the current date and time.
+
+
